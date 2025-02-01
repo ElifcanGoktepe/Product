@@ -7,20 +7,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
+@Service // Spring Service Annotation
+@RequiredArgsConstructor // Lombok Constructor Annotation
 public class ProductService {
 
     private final ProductRepository repository;
 
-    public void save(Product product) {
-        repository.save(product);
-    }
-    public List<Product> getAllProduct() {
+    public List<Product> getAll() { // Listing All Products
         return repository.findAll();
     }
-    public List<Product> getProductByBrand(String brand) {
-        return repository.findAllByBrand(brand);
+
+    public void addProduct(String name, String brand, Double price) { // Adding Products
+        repository.save(Product.builder()
+                .name(name)
+                .brand(brand)
+                .price(price)
+                .build());
     }
 
+    public List<Product> getProductByBrand(String brand) { // Searching Product by Brand
+        return repository.findAllByBrand(brand);
+    }
 }

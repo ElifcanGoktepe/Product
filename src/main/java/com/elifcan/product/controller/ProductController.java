@@ -11,12 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequiredArgsConstructor
+@RestController // Adding Spring Annotation
+@RequiredArgsConstructor // Adding Constructor
 @RequestMapping("/product")
 public class ProductController {
 
     private final ProductService productService;
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Product>> getAllProducts(){
+        List<Product> productList = productService.getAll();
+        return ResponseEntity.ok().body(productList);
+    }
 
     @PostMapping("/add-product")
     public ResponseEntity<Void> addProduct(String name, String brand, Double price){
@@ -25,17 +31,13 @@ public class ProductController {
                 .brand(brand)
                 .price(price)
                 .build();
-        productService.save(product);
+        productService.addProduct(name,brand, price);
         return ResponseEntity.ok().build();
     }
-    @GetMapping("/get-all")
-    public ResponseEntity<List<Product>> getAll(){
-        List<Product> productList = productService.getAllProduct();
-        return ResponseEntity.ok().body(productList);
-    }
 
-    @GetMapping("/get-by-brand")
-    public ResponseEntity<List<Product>> getByBrand(String brand){
+
+    @GetMapping("/get-all-by-brand")
+    public ResponseEntity<List<Product>> getAllProductByBrand(String brand){
         return ResponseEntity.ok(productService.getProductByBrand(brand));
     }
 }
