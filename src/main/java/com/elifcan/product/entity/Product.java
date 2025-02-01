@@ -19,4 +19,7 @@ public class Product {
     String name;
     String brand;
     Double price;
+    Long modelDate;
+    Integer stock;
+    String image;
 }

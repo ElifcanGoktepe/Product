@@ -2,6 +2,7 @@ package com.elifcan.product.controller;
 
 import com.elifcan.product.entity.Product;
 import com.elifcan.product.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/product")
 public class ProductController {
-    private ProductService productService;
+
+    private final ProductService productService;
 
     @PostMapping("/add-product")
     public ResponseEntity<Void> addProduct(String name, String brand, Double price){
