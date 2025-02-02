@@ -1,4 +1,4 @@
-package com.elifcan.product;
+package com.elifcan.product.view;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

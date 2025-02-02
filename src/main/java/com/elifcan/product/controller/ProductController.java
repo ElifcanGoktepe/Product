@@ -16,6 +16,15 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    /**
+     * Basic Task
+     * Taking data according to requirements
+     * For example :
+     * -- UserName -> notNull, min 8 - max 64 character
+     * -- Email -> data should be email format
+     * these kind of checking should be in control and all wrong requests are rejected.
+     */
+
     private final ProductService productService;
 
     @GetMapping("/get-all")

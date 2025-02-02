@@ -1,13 +1,11 @@
 package com.elifcan.product.repository;
 
-import com.elifcan.product.ViewProduct;
+import com.elifcan.product.view.ViewProduct;
 import com.elifcan.product.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
@@ -112,7 +110,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * the result which returns one value should be made sure.
      */
 
-    Optional<Product> findOptionalByUserNameAndPassword (String userName, String password);
+//    Optional<Product> findOptionalByUserNameAndPassword (String userName, String password);
 
     /**
      * isDelete queries the boolean true/false query regarding registration
@@ -126,27 +124,27 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * Distict -> used to singularization of the specific column
      */
 
-    List<Product> findDistinctByAllByBrand(String brand);
+    List<Product> findDistinctByBrand(String brand);
 
     /**
      * If a column is Date type, Before and After are used to query specific date
      */
 
-    List<Product> findAllByCreatedDateBefore(Date date);
-    List<Product> findAllByCreatedDateAfter(Date date);
+//    List<Product> findAllByCreatedDateBefore(Date date);
+//    List<Product> findAllByCreatedDateAfter(Date date);
 
     /**
      * IsNull, IsNotNull are used to query to check whether the field is null or not
      */
 
-    List<Product> finAllByImageIsNull();
-    List<Product> finAllByImageIsNotNull();
+    List<Product> findAllByImageIsNull();
+    List<Product> findAllByImageIsNotNull();
 
     /**
      * select * from tblproduct where id in (212,121,12,21,122,221)
      */
 
-    List<Product> finAllByIdIn(List<Long> ids);
+    List<Product> findAllByIdIn(List<Long> ids);
 
     /**
      * Using Query
@@ -186,7 +184,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * select name, price, image from tblproduct
      */
 
-    @Query("select new com.elifcan.product.ViewProduct (p.name, p.price, p.image) from Product p")
+    @Query("select new com.elifcan.product.view.ViewProduct (p.name, p.price, p.image) from Product p")
     List<ViewProduct> getAllProductsInViewProduct();
 
 }
